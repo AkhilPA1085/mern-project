@@ -1,0 +1,18 @@
+{{>header}}
+{{>navbar}}
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="card p-3">
+            <h5 class="card-title text-center">Register</h5>
+            <div class="card-body">
+                <form action="/register" method="POST" class="d-flex flex-column">
+                    <input type="text" class="username mb-3" placeholder="username" name="username">
+                    <input type="email" class="email mb-3" placeholder="email" name="email">
+                    <input type="number" class="phone mb-3" placeholder="phone" name="phone">
+                    <input type="password" class="password mb-3" placeholder="password" name="password">
+                    <input type="password" class="confirmPassword mb-3" placeholder="confirmPassword" name="cPassword">
+                    <Button type="submit">Register</Button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{>footer}}
