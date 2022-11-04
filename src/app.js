@@ -34,6 +34,7 @@ app.get("/login",(req,res)=>{
     res.render("login")
 })
 
+// user registration
 app.post("/register",async (req,res)=>{
     try {
         const password = req.body.password
@@ -50,13 +51,31 @@ app.post("/register",async (req,res)=>{
             })
 
             await newUser.save()
-            res.status(201).render("index")
+            res.status(201).render("login")
         }
         else{
-            res.send("passwords mismatches")
+            res.send("Invalid credentials")
         }
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).send("Invalid credentials")
+    }
+})
+
+// user login
+app.post("/login",async(req,res)=>{
+    try{
+        const email = req.body.email
+        const password = req.body.password
+
+        const registeredEmail = await Register.findOne({email:email})
+        // res.send(registeredEmail.password)
+        if(registeredEmail.password === password){
+            res.status(200).render("index")
+        }else{
+            res.send("Invalid credentials")
+        }
+    }catch(error){
+        res.status(500).send("Invalid credentials")
     }
 })
 
